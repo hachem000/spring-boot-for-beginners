@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://alibou_user:lgwyqH8a7Dddp0dhXLqHpo1vLDUd4N8t@dpg-d1dbgs6mcj7s73fmf810-a.oregon-postgres.render.com/student_db_n867
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://dpg-d1dbgs6mcj7s73fmf810-a.oregon-postgres.render.com:5432/student_db_n867
+    username: ${DB_USERNAME:alibou_user}
+    password: ${DB_PASSWORD:lgwyqH8a7Dddp0dhXLqHpo1vLDUd4N8t}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -13,4 +13,3 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
