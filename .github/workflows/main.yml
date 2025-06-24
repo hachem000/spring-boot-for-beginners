@@ -40,7 +40,10 @@ jobs:
           echo "TIMESTAMP=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_OUTPUT
           echo "SHORT_SHA=$(git rev-parse --short HEAD)" >>                 $GITHUB_OUTPUT
 
-        
+      - name: Build with Maven
+        run: |
+          mvn clean
+          mvn -B package -DskipTests
       - name : Build & push Docker image
         uses : docker/build-push-action@v2
         with:
