@@ -31,6 +31,9 @@ jobs:
           mvn clean
           mvn -B package --file pom.xml
 
+      - name: Run Checkstyle
+            run: mvn checkstyle:check
+
       - name: set image tags
         id: vars
         run: |
