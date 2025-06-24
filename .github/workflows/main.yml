@@ -47,4 +47,4 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:$(date +'%Y-%m-%dT%H:%M:%SZ')
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:${{ steps.vars.outputs.tag }}
