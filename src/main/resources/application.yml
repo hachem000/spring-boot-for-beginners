@@ -1,15 +1,40 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://dpg-d1dbgs6mcj7s73fmf810-a.oregon-postgres.render.com:5432/student_db_n867
-    username: ${DB_USERNAME:alibou_user}
-    password: ${DB_PASSWORD:lgwyqH8a7Dddp0dhXLqHpo1vLDUd4N8t}
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: create
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+        # Default profile (for production/Render deployment)
+        spring:
+          datasource:
+            url: jdbc:postgresql://dpg-d1dbgs6mcj7s73fmf810-a:5432/student_db_n867
+            username: ${DB_USERNAME:alibou_user}
+            password: ${DB_PASSWORD}
+            driver-class-name: org.postgresql.Driver
+          jpa:
+            hibernate:
+              ddl-auto: update
+            database: postgresql
+            database-platform: org.hibernate.dialect.PostgreSQLDialect
+            show-sql: false
+            properties:
+              hibernate:
+                format_sql: true
+          application:
+            name: spring-boot-app
+
+        server:
+          port: ${PORT:8080}
+
+        ---
+        # Test profile (for running tests with H2 in-memory database)
+        spring:
+          config:
+            activate:
+              on-profile: test
+          datasource:
+            url: jdbc:h2:mem:testdb
+            driver-class-name: org.h2.Driver
+            username: sa
+            password: 
+          jpa:
+            database-platform: org.hibernate.dialect.H2Dialect
+            hibernate:
+              ddl-auto: create-drop
+          h2:
+            console:
+              enabled: true
