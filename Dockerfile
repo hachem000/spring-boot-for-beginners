@@ -1,17 +1,13 @@
-# Use OpenJDK 17 as base image
-FROM openjdk:17-jdk-slim
-
-# Set working directory
+# Build stage
+FROM maven:3.8.4-openjdk-17 as builder
 WORKDIR /app
+COPY pom.xml .
+COPY src src
+RUN mvn clean package -DskipTests
 
-# Copy the JAR file from target directory
-COPY target/*.jar app.jar
-
-# Expose the port that Spring Boot runs on
+# Runtime stage
+FROM openjdk:17-jdk
+WORKDIR /app
+COPY --from=builder /app/target/springdemo-1.0.0.jar /app/springdemo.jar
 EXPOSE 8080
-
-# Set JVM options for better container performance
-ENV JAVA_OPTS="-Xmx512m -Xms256m"
-
-# Run the application
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+CMD ["java", "-jar", "springdemo.jar"]
