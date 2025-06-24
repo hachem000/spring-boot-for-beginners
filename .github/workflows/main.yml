@@ -39,3 +39,8 @@ jobs:
 
       - name : Push to Docker Hub
         uses : docker/build-push-action@v2
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:$(date +'%Y-%m-%dT%H:%M:%SZ')
