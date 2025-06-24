@@ -37,4 +37,8 @@ public class DBStudentService implements StudentService {
   public void delete(String email) {
     repository.deleteByEmail(email);
   }
+
+  @Override
+  public void deleteAll()
+  
 }

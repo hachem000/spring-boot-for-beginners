@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - '**'
 
 
 jobs:
+
   build-deploy:
     name: Build and Deploy Spring Boot App
     runs-on: ubuntu-latest
@@ -51,7 +55,9 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      
       - name : Push to Docker Hub
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses : docker/build-push-action@v2
         with:
           context: .
