@@ -60,4 +60,4 @@ jobs:
           tags: | 
             ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:${{ steps.vars.outputs.TIMESTAMP }}
             ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:${{ steps.vars.outputs.SHORT_SHA }}
-            ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:latest
+            ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:latestq
