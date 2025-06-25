@@ -68,6 +68,18 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.0.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal> <!-- Ensures a fat JAR with all dependencies -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
