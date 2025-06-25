@@ -27,13 +27,13 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Unit Tests
-        run: mvn -B test --file pom.xml
-        working-directory: ./
+      - name: Run Unit Tests
+        run: mvn -B test
+        working-directory: ./spring-boot-for-beginners
 
       - name: Build with Maven
-        run: mvn clean package --file pom.xml -DskipTests
-        working-directory: ./
+        run: mvn clean package -DskipTests
+        working-directory: ./spring-boot-for-beginners
 
       - name: Set image tag
         id: vars
@@ -51,8 +51,8 @@ jobs:
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./
-          file: ./Dockerfile
+          context: ./spring-boot-for-beginners
+          file: ./spring-boot-for-beginners/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:${{ steps.vars.outputs.tag }}
           cache-from: type=gha
