@@ -1,9 +1,9 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:17-jdk
 
 WORKDIR /app
 
-COPY target/springdemo-1.0.0.jar app.jar
+COPY target/springdemo-1.0.0.jar /app/springdemo.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "springdemo.jar"]
