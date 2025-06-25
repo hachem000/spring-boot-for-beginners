@@ -48,7 +48,7 @@
                     uses: docker/build-push-action@v5
                     with:
                       context: .
-                      dockerfile: Dockerfile
+                      file: Dockerfile
                       push: true
                       tags: ${{ secrets.DOCKER_HUB_USERNAME }}/spring-boot-for-beginners:${{ steps.vars.outputs.tag }}
                       cache-from: type=gha
